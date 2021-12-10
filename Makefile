@@ -1,4 +1,5 @@
 SRCS		= $(addprefix srcs,
+				main.c
 				)
 
 OBJS		= ${SRCS:.c=.o}
@@ -14,10 +15,10 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
 %.c%.o:
-			${CC} ${CFLAGS} $< -I includes -o ${<:.c=.o}
+			${CC} ${CFLAGS} -I/usr/includes -Imlx_linux -03 -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			ar rcs ${NAME} ${OBJS}
+			$(CC) $(CFLAGS) -Lmlx_linux -lmlx_linux -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -o $(NAME)
 
 all:		${NAME}
 
