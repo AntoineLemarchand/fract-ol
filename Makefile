@@ -1,4 +1,5 @@
 SRCS		= $(addprefix srcs/, \
+				sets.c \
 			  	main.c \
 				)
 
@@ -10,7 +11,7 @@ RM			= rm -f
 
 CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
 CPPFLAGS	= -I/usr/includes  -I~/minilibx/include/ -Iincludes
 
