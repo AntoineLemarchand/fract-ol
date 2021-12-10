@@ -14,7 +14,7 @@ CFLAGS		= -Wall -Wextra -Werror
 
 CPPFLAGS	= -I/usr/includes  -I~/minilibx/include/ -Iincludes
 
-LIBS		= ./libft/libft.a ~/minilibx/libmlx_Linux.a -lXext -lX11 -lm
+LIBS		= ./libft/libft.a minilibx/libmlx_Linux.a -lXext -lX11 -lm
 
 
 

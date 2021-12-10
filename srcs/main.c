@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/10 14:49:20 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/10 14:55:10 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Fract-ol");
 	mlx_hook(vars.win, 2, 1L << 0, mlx_handleinput, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
