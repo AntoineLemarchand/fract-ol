@@ -1,10 +1,8 @@
-SRCS		= $(addprefix srcs,
-				main.c
+SRCS		= $(addprefix srcs/, \
+			  	main.c \
 				)
 
-OBJS		= ${SRCS:.c=.o}
-
-BONUS_OBJS	= ${LST:.c=.o}
+OBJS		= $(SRCS:.c=.o)
 
 NAME		= fractol
 
@@ -14,21 +12,26 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 
+CPPFLAGS	= -I/usr/includes  -I~/minilibx/include/ -Iincludes
+
+LIBS		= ./libft/libft.a ~/minilibx/libmlx_Linux.a -lXext -lX11 -lm
+
+
+
 %.c%.o:
-			${CC} ${CFLAGS} -I/usr/includes -Imlx_linux -03 -c $< -o ${<:.c=.o}
+			$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $(<:.c=.o) $(LIBS)
 
-${NAME}:	${OBJS}
-			$(CC) $(CFLAGS) -Lmlx_linux -lmlx_linux -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -o $(NAME)
+${NAME}:	$(OBJS)
+			make -C libft
+			$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) $(LIBS)
 
-all:		${NAME}
-
-bonus:		${OBJS} ${BONUS_OBJS}
-			ar rcs ${NAME} ${OBJS} ${BONUS_OBJS}
+all:		$(NAME)
 
 clean:	
-			${RM} ${OBJS} ${BONUS_OBJS}
+			$(RM) $(OBJS)
 
 fclean:		clean
-			${RM} ${NAME}
+			make clean -C libft
+			$(RM) $(NAME)
 
 re:			fclean all
