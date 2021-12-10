@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/10 20:37:19 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/10 20:42:08 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	ft_isparam(char *s)
 int	mlx_draw_func(t_data *data, char *set)
 {
 	void	*func;
+
 	if (!ft_strncmp(set, "-mandelbrot", 12))
 		func = &ft_mandelbrot;
 	else if (!ft_strncmp(set, "-julia", 7))
@@ -56,7 +57,7 @@ int	main(int ac, char **av)
 	data.win = mlx_new_window(data.mlx, 800, 600, ft_strtrim(av[1], "-"));
 	data.img = mlx_new_image(data.mlx, 800, 600);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
-		&data.line_length, &data.endian);
+			&data.line_length, &data.endian);
 	mlx_hook(data.win, 2, 1L << 0, mlx_handleinput, &data);
 	mlx_draw_func(&data, av[1]);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
