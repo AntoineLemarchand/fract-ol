@@ -6,58 +6,51 @@
 /*   By: antoine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 19:33:24 by antoine           #+#    #+#             */
-/*   Updated: 2021/12/10 20:41:31 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/12 13:04:59 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_putpix(t_data *data, int x, int y, int col)
+int	ft_mandelbrot(float x, float y)
 {
-	char	*dst;
+	double	x0;
+	double	y0;
+	double	x2;
+	double	y2;
+	int		iter;
 
-	dst = data->addr + (y * data->line_length + x
-			* (data ->bits_per_pixel / 8));
-	*(unsigned int *)dst = col;
-}
-
-int	ft_mandelbrot(int x, int y)
-{
-	(void)x;
-	(void)y;
-	return (0x00FF0000);
+	x0 = (2.47 * x / RES_X - 2);
+	y0 = (2.24 * y / RES_Y - 1.12);
+	x = 0;
+	y = 0;
+	x2 = 0;
+	y2 = 0;
+	iter = 0;
+	while ((x2 + y2) <= 4 && iter < MAX_ITER)
+	{
+		y = (x + x) * y + y0;
+		x = x2 - y2 + x0;
+		x2 = x * x;
+		y2 = y * y;
+		iter++;
+	}
+	if (iter < 50)
+		return (ft_getrgb(0, 0, (255 * iter) / 100, 0));
+	else
+		return (ft_getrgb(0, 0, 0, 0));
 }
 
 int	ft_julia(int x, int y)
 {
 	(void)x;
 	(void)y;
-	return (0x0000FF00);
+	return (ft_getrgb(0, 0, 255, 0));
 }
 
 int	ft_burningship(int x, int y)
 {
 	(void)x;
 	(void)y;
-	return (0x000000FF);
-}
-
-int	ft_fill_screen(t_data *data, int width, int length, int (*f)(int, int))
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < width)
-	{
-		j = 0;
-		while (j < length)
-		{
-			ft_putpix(data, i, j, f(i, j));
-			j++;
-		}
-		i++;
-	}
-	return (0);
+	return (ft_getrgb(0, 0, 0, 255));
 }

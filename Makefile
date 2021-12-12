@@ -1,4 +1,5 @@
 SRCS		= $(addprefix srcs/, \
+			  	utils.c \
 				sets.c \
 			  	main.c \
 				)
@@ -15,7 +16,7 @@ CFLAGS		= -Wall -Wextra -Werror -g
 
 CPPFLAGS	= -I/usr/includes  -I~/minilibx/include/ -Iincludes
 
-LIBS		= ./libft/libft.a minilibx/libmlx_Linux.a -lXext -lX11 -lm
+LIBS		= ./libft/libft.a minilibx/libmlx_Linux.a -lXext -lX11 -lmlx -lm
 
 
 

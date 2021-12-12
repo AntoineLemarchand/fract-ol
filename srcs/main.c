@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/10 20:42:08 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/11 16:19:03 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	mlx_handleinput(int keycode, t_data *data)
 {
 	if (keycode == 65307)
+	{
+		mlx_destroy_image(data->mlx, data->img);
 		mlx_destroy_window(data->mlx, data->win);
+		exit(0);
+	}
 	return (0);
 }
 
@@ -54,8 +58,8 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 800, 600, ft_strtrim(av[1], "-"));
-	data.img = mlx_new_image(data.mlx, 800, 600);
+	data.win = mlx_new_window(data.mlx, RES_X, RES_Y, ft_strtrim(av[1], "-"));
+	data.img = mlx_new_image(data.mlx, RES_X, RES_Y);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
 	mlx_hook(data.win, 2, 1L << 0, mlx_handleinput, &data);
