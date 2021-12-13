@@ -6,20 +6,20 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/13 15:31:31 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:26:37 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
 
 
-int	mlx_draw_func(t_data *data, char *set)
+static int	mlx_draw_func(t_data *data)
 {
 	void	*func;
 
-	if (!ft_strncmp(set, "-mandelbrot", 12))
+	if (!ft_strncmp(data->fractal, "-mandelbrot", 12))
 		func = &ft_mandelbrot;
-	else if (!ft_strncmp(set, "-julia", 7))
+	else if (!ft_strncmp(data->fractal, "-julia", 7))
 		func = &ft_julia;
 	else
 		func = &ft_burningship;
@@ -46,21 +46,25 @@ int	mlx_handlekb(int keycode, t_data *data)
 		data->offsety += 50;
 	if (keycode >= 65361 && keycode <= 65364)
 	{
-		mlx_draw_func(data, "-mandelbrot");
+		mlx_draw_func(data);
 		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
 	return (0);
 }
 
 // 4 = zoom | 5 = dezoom
-int	mlx_handlemouse(int keycode, t_data *data)
+int	mlx_handlemouse(int keycode, int x, int y, t_data *data)
 {
-	(void)data;
+	(void)x;
+	(void)y;
 	if (keycode == 4)
-	{
-	}
+		data->zoom += .05;
 	else if (keycode == 5)
+		data->zoom -= .05;
+	if (keycode == 4 || keycode == 5)
 	{
+		mlx_draw_func(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	}
 	return (0);
 }
@@ -85,16 +89,18 @@ int	main(int ac, char **av)
 		ft_putstr_fd("-julia\n\t-burningship\n", 2);
 		return (1);
 	}
+	data.fractal = av[1];
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, RES_X, RES_Y, ft_strtrim(av[1], "-"));
 	data.img = mlx_new_image(data.mlx, RES_X, RES_Y);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
-	mlx_key_hook(data.win, mlx_handlekb, &data);
+	mlx_hook(data.win, 2, 1L<<0, mlx_handlekb, &data);
 	mlx_mouse_hook(data.win, mlx_handlemouse, &data);
 	data.offsetx = 0;
 	data.offsety = 0;
-	mlx_draw_func(&data, av[1]);
+	data.zoom = 1;
+	mlx_draw_func(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);
 	return (0);
