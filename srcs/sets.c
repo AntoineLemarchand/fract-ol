@@ -6,12 +6,11 @@
 /*   By: antoine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 19:33:24 by antoine           #+#    #+#             */
-/*   Updated: 2021/12/13 17:23:36 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:51:28 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
 
 static int	ft_colorgraph(int val)
 {
@@ -20,15 +19,15 @@ static int	ft_colorgraph(int val)
 	nval = (100 * val) / MAX_ITER;
 	if (val == MAX_ITER)
 		return (0);
-	return (ft_getcol(val));
+	return (ft_getcol(nval));
 }
 
 int	ft_mandelbrot(float x, float y, t_data *data)
 {
 	double	x0;
 	double	y0;
-	float	x2;
-	float	y2;
+	double	x2;
+	double	y2;
 	int		iter;
 
 	x0 = (2.47 * x * data->zoom / RES_X - 2);
@@ -38,11 +37,6 @@ int	ft_mandelbrot(float x, float y, t_data *data)
 	x2 = 0;
 	y2 = 0;
 	iter = 0;
-	if (x < -2 || x > 1)
-	{
-		if (y < -1.5 || y > 1.5)
-			return (0x00FF0000);
-	}
 	while ((x2 + y2) <= 4 && iter < MAX_ITER)
 	{
 		y = (x + x) * y + y0;

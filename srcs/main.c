@@ -6,12 +6,11 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/13 17:26:37 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:53:36 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
-
 
 static int	mlx_draw_func(t_data *data)
 {
@@ -95,7 +94,7 @@ int	main(int ac, char **av)
 	data.img = mlx_new_image(data.mlx, RES_X, RES_Y);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
-	mlx_hook(data.win, 2, 1L<<0, mlx_handlekb, &data);
+	mlx_hook(data.win, 2, 1L << 0, mlx_handlekb, &data);
 	mlx_mouse_hook(data.win, mlx_handlemouse, &data);
 	data.offsetx = 0;
 	data.offsety = 0;
