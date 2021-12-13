@@ -6,31 +6,12 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/11 16:19:03 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/13 15:31:31 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
 
-int	mlx_handleinput(int keycode, t_data *data)
-{
-	if (keycode == 65307)
-	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
-	}
-	return (0);
-}
-
-int	ft_isparam(char *s)
-{
-	if (!ft_strncmp(s, "-mandelbrot", 12)
-		|| !ft_strncmp(s, "-julia", 7)
-		|| !ft_strncmp(s, "-burningship", 13))
-		return (1);
-	return (0);
-}
 
 int	mlx_draw_func(t_data *data, char *set)
 {
@@ -43,6 +24,53 @@ int	mlx_draw_func(t_data *data, char *set)
 	else
 		func = &ft_burningship;
 	ft_fill_screen(data, RES_X, RES_Y, func);
+	return (0);
+}
+
+// 65307 = esc | <left/up/right/down> = 6536<1/2/3/4>
+int	mlx_handlekb(int keycode, t_data *data)
+{
+	if (keycode == 65307)
+	{
+		mlx_destroy_image(data->mlx, data->img);
+		mlx_destroy_window(data->mlx, data->win);
+		exit(0);
+	}
+	else if (keycode == 65361)
+		data->offsetx -= 50;
+	else if (keycode == 65362)
+		data->offsety -= 50;
+	else if (keycode == 65363)
+		data->offsetx += 50;
+	else if (keycode == 65364)
+		data->offsety += 50;
+	if (keycode >= 65361 && keycode <= 65364)
+	{
+		mlx_draw_func(data, "-mandelbrot");
+		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	}
+	return (0);
+}
+
+// 4 = zoom | 5 = dezoom
+int	mlx_handlemouse(int keycode, t_data *data)
+{
+	(void)data;
+	if (keycode == 4)
+	{
+	}
+	else if (keycode == 5)
+	{
+	}
+	return (0);
+}
+
+int	ft_isparam(char *s)
+{
+	if (!ft_strncmp(s, "-mandelbrot", 12)
+		|| !ft_strncmp(s, "-julia", 7)
+		|| !ft_strncmp(s, "-burningship", 13))
+		return (1);
 	return (0);
 }
 
@@ -62,7 +90,10 @@ int	main(int ac, char **av)
 	data.img = mlx_new_image(data.mlx, RES_X, RES_Y);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
-	mlx_hook(data.win, 2, 1L << 0, mlx_handleinput, &data);
+	mlx_key_hook(data.win, mlx_handlekb, &data);
+	mlx_mouse_hook(data.win, mlx_handlemouse, &data);
+	data.offsetx = 0;
+	data.offsety = 0;
 	mlx_draw_func(&data, av[1]);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);

@@ -1,4 +1,5 @@
 SRCS		= $(addprefix srcs/, \
+				color.c \
 			  	utils.c \
 				sets.c \
 			  	main.c \
@@ -25,6 +26,7 @@ LIBS		= ./libft/libft.a minilibx/libmlx_Linux.a -lXext -lX11 -lm
 
 ${NAME}:	$(OBJS)
 			make -C libft
+			make -C minilibx
 			$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) $(LIBS)
 
 all:		$(NAME)
@@ -34,6 +36,7 @@ clean:
 
 fclean:		clean
 			make clean -C libft
+			make clean -C minilibx
 			$(RM) $(NAME)
 
 re:			fclean all
