@@ -6,7 +6,7 @@
 /*   By: antoine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:24:13 by antoine           #+#    #+#             */
-/*   Updated: 2021/12/13 23:52:07 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/14 14:06:07 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,25 @@ int	ft_fill_screen(t_data *data, int width, int height,
 {
 	float	i;
 	float	j;
+	int		box;
 	int		col;
 
 	i = 0;
 	j = 0;
+	box = 0;
 	while (i < width)
 	{
 		j = 0;
 		while (j < height)
 		{
-			col = ft_putpix(data, i, j, f(i + data->offsetx,
-						j++ + data->offsety, data));
-			if (col == 0)
-				ft_putpix(data, i, j++, col);
+			box = 0;
+			while (box < 3)
+			{
+				col = ft_putpix(data, i, j + box, f(i + data->offsetx,
+							j + data->offsety, data));
+				box++;
+			}
+			j += 3;
 		}
 		i++;
 	}

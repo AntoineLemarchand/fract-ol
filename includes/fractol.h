@@ -6,15 +6,15 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:47:46 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/13 22:47:45 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/14 14:04:36 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define RES_X 1000
-# define RES_Y 1000
-# define MAX_ITER 50
+# define RES_X 1200
+# define RES_Y 1200
+# define MAX_ITER 20
 # include <mlx.h>
 # include <stddef.h>
 # include <unistd.h>
@@ -39,6 +39,6 @@ int	ft_getcol(int hue);
 int	ft_fill_screen(t_data *data, int width, int height,
 	int (*f)(float, float, t_data *));
 int	ft_mandelbrot(float x, float y, t_data *data);
+int	ft_julia(float x, float y, t_data *data);
 int	ft_burningship(int x, int y);
-int	ft_julia(int x, int y);
 #endif

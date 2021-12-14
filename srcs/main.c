@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/13 23:53:36 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/14 09:55:52 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	mlx_handlemouse(int keycode, int x, int y, t_data *data)
 	(void)x;
 	(void)y;
 	if (keycode == 4)
-		data->zoom += .05;
-	else if (keycode == 5)
 		data->zoom -= .05;
+	else if (keycode == 5)
+		data->zoom += .05;
 	if (keycode == 4 || keycode == 5)
 	{
 		mlx_draw_func(data);
@@ -94,7 +94,7 @@ int	main(int ac, char **av)
 	data.img = mlx_new_image(data.mlx, RES_X, RES_Y);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
-	mlx_hook(data.win, 2, 1L << 0, mlx_handlekb, &data);
+	mlx_key_hook(data.win, mlx_handlekb, &data);
 	mlx_mouse_hook(data.win, mlx_handlemouse, &data);
 	data.offsetx = 0;
 	data.offsety = 0;
