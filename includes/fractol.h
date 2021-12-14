@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:47:46 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/14 14:04:36 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:32:26 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 # define RES_X 1200
 # define RES_Y 1200
-# define MAX_ITER 20
+# define MAX_ITER 35
 # include <mlx.h>
 # include <stddef.h>
 # include <unistd.h>
@@ -34,7 +34,6 @@ typedef struct s_data {
 	int		offsety;
 	float	zoom;
 }				t_data;
-int	ft_putpix(t_data *data, int x, int y, int col);
 int	ft_getcol(int hue);
 int	ft_fill_screen(t_data *data, int width, int height,
 	int (*f)(float, float, t_data *));
