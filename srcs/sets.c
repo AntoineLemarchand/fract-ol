@@ -6,7 +6,7 @@
 /*   By: antoine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 19:33:24 by antoine           #+#    #+#             */
-/*   Updated: 2021/12/14 14:08:22 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:14:57 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_mandelbrot(float x, float y, t_data *data)
 	double	y2;
 	int		iter;
 
-	x0 = ((2.47 / data->zoom * x) / RES_X - 2) / data->zoom;
-	y0 = ((2.24 / data->zoom * y) / RES_Y - 1.12) / data->zoom;
+	x0 = ((2.47 * data->zoom * x) / RES_X - 2) / data->zoom;
+	y0 = ((2.24 * y * data->zoom) / RES_Y - 1.12) / data->zoom;
 	x = 0;
 	y = 0;
 	x2 = 0;

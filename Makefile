@@ -35,7 +35,7 @@ clean:
 			$(RM) $(OBJS)
 
 fclean:		clean
-			make clean -C libft
+			make fclean -C libft
 			make clean -C minilibx
 			$(RM) $(NAME)
 
