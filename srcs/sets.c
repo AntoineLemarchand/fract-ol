@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:43:59 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/16 22:34:33 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/16 23:07:50 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ int	ft_julia(float zx, float zy,float cx, float cy, t_data *data)
 	float	zy2;
 	int		iter;
 
-	if (!cx)
-		cx=  .5;
+	/* a retirer plus tard */
+	cx=  .3;
+	cy=  .5;
+	/*                     */
 	zx = 1.5 * (zx - RES_X / 2) / (.5 * (data->zoom * RES_X));
 	zy = (zy - RES_Y / 2) / (.5 * (data->zoom * RES_Y));
 	zx2 = zx * zx;
