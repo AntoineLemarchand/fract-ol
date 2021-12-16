@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/16 13:16:49 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:40:03 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int	main(int ac, char **av)
 	if (ac != 2 || !ft_isparam(av[1]))
 	{
 		ft_putstr_fd("Available parameters:\n", 2);
-		ft_putstr_fd("\t- mandelbrot\n\t", 2);
-		ft_putstr_fd("- julia\n\t- burningship\n", 2);
+		ft_putstr_fd("\t* mandelbrot\n\t", 2);
+		ft_putstr_fd("* julia\n\t* burningship\n", 2);
 		return (1);
 	}
 	data.fractal = av[1];

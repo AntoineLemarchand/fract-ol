@@ -6,15 +6,15 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:47:46 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/15 10:20:43 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:39:12 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define RES_X 1200
-# define RES_Y 1200
-# define MAX_ITER 32
+# define RES_X 800
+# define RES_Y 800
+# define MAX_ITER 50
 # include <mlx.h>
 # include <stddef.h>
 # include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:43:59 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/16 18:43:22 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:45:59 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,55 +32,55 @@ static int	ft_isbulb(float x, float y)
 	return (0);
 }
 
-int	ft_mandelbrot(float x, float y, t_data *data)
+int	ft_mandelbrot(float zx, float zy, t_data *data)
 {
-	float	x0;
-	float	y0;
-	float	x2;
-	float	y2;
+	float	cx;
+	float	cy;
+	float	zx2;
+	float	zy2;
 	int		iter;
 
-	x0 = ((2.5 * x) / RES_X - 2) / data->zoom;
-	y0 = ((2.25 * y) / RES_Y - 1.12) / data->zoom;
-	x = 0;
-	y = 0;
-	x2 = 0;
-	y2 = 0;
+	cx = ((2.47 * zx) / RES_X - 2) / data->zoom;
+	cy = ((2.24 * zy) / RES_Y - 1.12) / data->zoom;
+	zx = 0;
+	zy = 0;
+	zx2 = 0;
+	zy2 = 0;
 	iter = 0;
-	if (ft_isbulb(x0, y0))
+	if (ft_isbulb(cx, cy))
 		return (0);
-	while ((x2 + y2) <= 4 && iter < MAX_ITER)
+	while ((zx2 + zy2) <= 4 && iter < MAX_ITER)
 	{
-		y = (x + x) * y + y0;
-		x = x2 - y2 + x0;
-		x2 = x * x;
-		y2 = y * y;
+		zy = (zx + zx) * zy + cy;
+		zx = zx2 - zy2 + cx;
+		zx2 = zx * zx;
+		zy2 = zy * zy;
 		iter++;
 	}
 	return (ft_colorgraph(iter));
 }
 
-int	ft_julia(float x, float y, t_data *data)
+int	ft_julia(float zx, float zy, t_data *data)
 {
-	float	x0;
-	float	y0;
-	float	x2;
-	float	y2;
+	float	cx;
+	float	cy;
+	float	zx2;
+	float	zy2;
 	int		iter;
 
-	x = 1.5 * (x - RES_X / 2) / (.5 * (data->zoom * RES_X));
-	y = (y - RES_Y / 2) / (.5 * (data->zoom * RES_Y));
-	x0 = -0.7;
-	y0 = 0.5017;
-	x2 = x * x;
-	y2 = y * y;
+	zx = 1.5 * (zx - RES_X / 2) / (.5 * (data->zoom * RES_X));
+	zy = (zy - RES_Y / 2) / (.5 * (data->zoom * RES_Y));
+	cx = .285;
+	cy = 0;
+	zx2 = zx * zx;
+	zy2 = zy * zy;
 	iter = 0;
-	while ((x2 + y2) <= 4 && iter < MAX_ITER)
+	while ((zx2 + zy2) <= 4 && iter < MAX_ITER)
 	{
-		y = (x + x) * y + y0;
-		x = x2 - y2 + x0;
-		x2 = x * x;
-		y2 = y * y;
+		zy = (zx + zx) * zy + cy;
+		zx = zx2 - zy2 + cx;
+		zx2 = zx * zx;
+		zy2 = zy * zy;
 		iter++;
 	}
 	return (ft_colorgraph(iter));
