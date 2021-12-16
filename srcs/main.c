@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/16 21:40:03 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/16 22:32:32 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 static int	mlx_draw_func(t_data *data)
 {
-	void	*func;
-
 	if (!ft_strncmp(data->fractal, "mandelbrot", 11))
-		func = &ft_mandelbrot;
-	else if (!ft_strncmp(data->fractal, "julia", 6))
-		func = &ft_julia;
+		ft_fill_screen(data, RES_X, RES_Y, &ft_mandelbrot);
+	else if (!ft_strncmp(data->fractal, "chou-fleur", 6))
+		ft_fill_screen(data, RES_X, RES_Y, &ft_choufleur);
 	else
-		func = &ft_burningship;
-	ft_fill_screen(data, RES_X, RES_Y, func);
+		ft_fill_screen(data, RES_X, RES_Y, &ft_julia);
 	return (0);
 }
 
@@ -74,7 +71,7 @@ int	ft_isparam(char *s)
 {
 	if (!ft_strncmp(s, "mandelbrot", 12)
 		|| !ft_strncmp(s, "julia", 7)
-		|| !ft_strncmp(s, "burningship", 13))
+		|| !ft_strncmp(s, "chou-fleur", 11))
 		return (1);
 	return (0);
 }
@@ -87,7 +84,7 @@ int	main(int ac, char **av)
 	{
 		ft_putstr_fd("Available parameters:\n", 2);
 		ft_putstr_fd("\t* mandelbrot\n\t", 2);
-		ft_putstr_fd("* julia\n\t* burningship\n", 2);
+		ft_putstr_fd("* julia\n\t* chou-fleur\n", 2);
 		return (1);
 	}
 	data.fractal = av[1];
