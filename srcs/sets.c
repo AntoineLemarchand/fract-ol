@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sets.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 19:33:24 by antoine           #+#    #+#             */
-/*   Updated: 2021/12/14 18:00:28 by alemarch         ###   ########.fr       */
+/*   Created: 2021/12/16 15:43:59 by alemarch          #+#    #+#             */
+/*   Updated: 2021/12/16 18:43:22 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	ft_mandelbrot(float x, float y, t_data *data)
 	float	y2;
 	int		iter;
 
-	x0 = ((2.47 * x) / RES_X - 2) / data->zoom;
-	y0 = ((2.24 * y) / RES_Y - 1.12) / data->zoom;
-	x = -.5;
+	x0 = ((2.5 * x) / RES_X - 2) / data->zoom;
+	y0 = ((2.25 * y) / RES_Y - 1.12) / data->zoom;
+	x = 0;
 	y = 0;
 	x2 = 0;
 	y2 = 0;
@@ -68,15 +68,13 @@ int	ft_julia(float x, float y, t_data *data)
 	float	y2;
 	int		iter;
 
-	x0 = ((2.47 * x) / RES_X - 2) / data->zoom;
-	y0 = ((2.24 * y) / RES_Y - 1.12) / data->zoom;
-	x = -.5;
-	y = 0;
-	x2 = 0;
-	y2 = 0;
+	x = 1.5 * (x - RES_X / 2) / (.5 * (data->zoom * RES_X));
+	y = (y - RES_Y / 2) / (.5 * (data->zoom * RES_Y));
+	x0 = -0.7;
+	y0 = 0.5017;
+	x2 = x * x;
+	y2 = y * y;
 	iter = 0;
-	if (ft_isbulb(x0, y0))
-		return (0);
 	while ((x2 + y2) <= 4 && iter < MAX_ITER)
 	{
 		y = (x + x) * y + y0;
