@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:47:46 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/16 22:32:50 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/17 08:54:59 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ typedef struct s_data {
 	int		offsetx;
 	int		offsety;
 	float	zoom;
-}				t_data;
+}	t_data;
+
+typedef struct s_complex {
+	float	real;
+	float	imag;
+}	t_complex;
+
 int	ft_getcol(int hue);
 int	ft_fill_screen(t_data *data, int width, int height,
-	int (*f)(float, float, float, float, t_data *));
-int	ft_mandelbrot(float zx, float zy, float cx, float cy,t_data *data);
-int	ft_julia(float zx, float zy, float cx, float xy, t_data *data);
-int	ft_choufleur(float zx, float zy, float cx, float cy, t_data *data);
+		int (*f)(t_complex, t_complex, t_data *));
+int	ft_mandelbrot(t_complex z, t_complex c, t_data *data);
+int	ft_julia(t_complex z, t_complex c, t_data *data);
+int	ft_choufleur(t_complex z, t_complex c, t_data *data);
 #endif

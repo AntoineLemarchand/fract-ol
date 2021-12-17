@@ -15,7 +15,7 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
-CPPFLAGS	= -I/usr/includes  -I~/minilibx/include/ -Iincludes
+CPPFLAGS	= -I/usr/includes  -Iminilibx/include/ -Iincludes
 
 LIBS		= ./libft/libft.a minilibx/libmlx_Linux.a -lXext -lX11 -lm
 

@@ -6,7 +6,7 @@
 /*   By: antoine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:24:13 by antoine           #+#    #+#             */
-/*   Updated: 2021/12/16 22:18:17 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/17 08:52:21 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,25 @@ static void	ft_putpix(t_data *data, int x, int y, int col)
 }
 
 int	ft_fill_screen(t_data *data, int width, int height,
-	int (*f)(float, float, float, float, t_data *))
+		int (*f)(t_complex, t_complex, t_data *))
 {
-	float	i;
-	float	j;
+	float		i;
+	float		j;
+	t_complex	z;
+	t_complex	c;
 
 	i = 0;
 	j = 0;
 	while (i < width)
 	{
 		j = 0;
+		z.real = i + data->offsetx * data->zoom;
 		while (j < height)
 		{
-				ft_putpix(data, i, j,
-						f(i + data->offsetx * data->zoom,
-						j + data->offsety * data->zoom, 0, 0, data));
-				j++;
+			z.imag = j + data->offsety * data->zoom;
+			c.real = 0;
+			c.imag = 0;
+			ft_putpix(data, i, j++, f(z, c, data));
 		}
 		i++;
 	}
