@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 11:06:55 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 11:33:10 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/17 11:50:02 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	ft_update_image(t_data *data)
 {
 	(void)data;
-	(void)f;
 	return (0);
 }
 
@@ -37,7 +36,7 @@ int	mlx_handlekb(int keycode, t_data *data)
 		data->offsetx += 25 / data->zoom;
 	else if (keycode == DOWN)
 		data->offsety += 25 / data->zoom;
-	ft_pushimage(data);
+	ft_update_image(data);
 	mlx_draw_func(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);

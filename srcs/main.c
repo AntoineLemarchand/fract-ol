@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 11:25:09 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/17 11:50:27 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Available parameters:\n", 2);
 		ft_putstr_fd("\t* mandelbrot\n\t", 2);
 		ft_putstr_fd("* julia\n\t* chou-fleur\n", 2);
-		return (1);
+		return (22);
 	}
 	data.fractal = av[1];
 	data.mlx = mlx_init();
