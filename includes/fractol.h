@@ -6,15 +6,25 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:47:46 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 08:54:59 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/17 11:11:36 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+// affichage
+# define MAX_ITER 50
 # define RES_X 800
 # define RES_Y 800
-# define MAX_ITER 50
+// input clavier
+# define LEFT 65361
+# define UP 65362
+# define RIGHT 65363
+# define DOWN 65364
+# define ESC 65307
+// input souris
+# define SCROLLUP 4
+# define SCROLLDOWN 5
 # include <mlx.h>
 # include <stddef.h>
 # include <unistd.h>
@@ -40,6 +50,9 @@ typedef struct s_complex {
 	float	imag;
 }	t_complex;
 
+int	mlx_draw_func(t_data *data);
+int	mlx_handlekb(int keycode, t_data *data);
+int	mlx_handlemouse(int keycode, int x, int y, t_data *data);
 int	ft_getcol(int hue);
 int	ft_fill_screen(t_data *data, int width, int height,
 		int (*f)(t_complex, t_complex, t_data *));

@@ -6,13 +6,13 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/16 22:32:32 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/17 11:08:37 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
 
-static int	mlx_draw_func(t_data *data)
+int	mlx_draw_func(t_data *data)
 {
 	if (!ft_strncmp(data->fractal, "mandelbrot", 11))
 		ft_fill_screen(data, RES_X, RES_Y, &ft_mandelbrot);
@@ -20,50 +20,6 @@ static int	mlx_draw_func(t_data *data)
 		ft_fill_screen(data, RES_X, RES_Y, &ft_choufleur);
 	else
 		ft_fill_screen(data, RES_X, RES_Y, &ft_julia);
-	return (0);
-}
-
-// 65307 = esc | <left/up/right/down> = 6536<1/2/3/4>
-int	mlx_handlekb(int keycode, t_data *data)
-{
-	if (keycode == 65307)
-	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->win);
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-		exit(0);
-	}
-	else if (keycode == 65361)
-		data->offsetx -= 25 / data->zoom;
-	else if (keycode == 65362)
-		data->offsety -= 25 / data->zoom;
-	else if (keycode == 65363)
-		data->offsetx += 25 / data->zoom;
-	else if (keycode == 65364)
-		data->offsety += 25 / data->zoom;
-	if (keycode >= 65361 && keycode <= 65364)
-	{
-		mlx_draw_func(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
-	return (0);
-}
-
-// 4 = zoom | 5 = dezoom
-int	mlx_handlemouse(int keycode, int x, int y, t_data *data)
-{
-	(void)x;
-	(void)y;
-	if (keycode == 4)
-		data->zoom *= 1.25;
-	else if (keycode == 5)
-		data->zoom /= 1.25;
-	if (keycode == 4 || keycode == 5)
-	{
-		mlx_draw_func(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
 	return (0);
 }
 

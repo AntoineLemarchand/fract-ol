@@ -1,4 +1,5 @@
 SRCS		= $(addprefix srcs/, \
+			  	input.c \
 				color.c \
 			  	utils.c \
 				sets.c \
