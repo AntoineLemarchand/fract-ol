@@ -14,7 +14,7 @@ endef
 
 define removing
 	@echo -n "$(shell tput bold)$(shell tput setaf 1)Removing $1 $(shell tput sgr0)"
-	@$(RM) $1 > /dev/null
+	$(RM) $1 > /dev/null
 	@echo "$(shell tput bold)$(shell tput setaf 2)√$(shell tput sgr0)"
 endef
 
@@ -68,6 +68,6 @@ clean:
 fclean:		clean
 			$(call cleaning,libft,fclean)
 			$(call cleaning,minilibx,clean)
-			$(call removing,fract-ol)
+			$(call removing,fractol)
 
 re:			fclean all
