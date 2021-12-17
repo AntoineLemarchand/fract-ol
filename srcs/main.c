@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 11:08:37 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/17 11:25:09 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	mlx_draw_func(t_data *data)
 {
 	if (!ft_strncmp(data->fractal, "mandelbrot", 11))
-		ft_fill_screen(data, RES_X, RES_Y, &ft_mandelbrot);
+		ft_fill_screen(data, &ft_mandelbrot);
 	else if (!ft_strncmp(data->fractal, "chou-fleur", 6))
-		ft_fill_screen(data, RES_X, RES_Y, &ft_choufleur);
+		ft_fill_screen(data, &ft_choufleur);
 	else
-		ft_fill_screen(data, RES_X, RES_Y, &ft_julia);
+		ft_fill_screen(data, &ft_julia);
 	return (0);
 }
 

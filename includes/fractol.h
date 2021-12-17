@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:47:46 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 11:11:36 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/17 11:24:38 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ int	mlx_draw_func(t_data *data);
 int	mlx_handlekb(int keycode, t_data *data);
 int	mlx_handlemouse(int keycode, int x, int y, t_data *data);
 int	ft_getcol(int hue);
-int	ft_fill_screen(t_data *data, int width, int height,
-		int (*f)(t_complex, t_complex, t_data *));
+int	ft_fill_screen(t_data *data, int (*f)(t_complex, t_complex, t_data *));
 int	ft_mandelbrot(t_complex z, t_complex c, t_data *data);
 int	ft_julia(t_complex z, t_complex c, t_data *data);
 int	ft_choufleur(t_complex z, t_complex c, t_data *data);

@@ -6,13 +6,19 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 11:06:55 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 11:11:36 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/17 11:33:10 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
 
-// 65307 = esc | <left/up/right/down> = 6536<1/2/3/4>
+static int	ft_update_image(t_data *data)
+{
+	(void)data;
+	(void)f;
+	return (0);
+}
+
 int	mlx_handlekb(int keycode, t_data *data)
 {
 	if (keycode == ESC)
@@ -31,15 +37,12 @@ int	mlx_handlekb(int keycode, t_data *data)
 		data->offsetx += 25 / data->zoom;
 	else if (keycode == DOWN)
 		data->offsety += 25 / data->zoom;
-	if (keycode >= LEFT && keycode <= DOWN)
-	{
-		mlx_draw_func(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
+	ft_pushimage(data);
+	mlx_draw_func(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }
 
-// 4 = zoom | 5 = dezoom
 int	mlx_handlemouse(int keycode, int x, int y, t_data *data)
 {
 	(void)x;
