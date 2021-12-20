@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 11:06:55 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/20 17:01:28 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/20 20:18:04 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	mlx_handlekb(int keycode, t_data *data)
 		data->offsetx += 25 / data->zoom;
 	else if (keycode == DOWN)
 		data->offsety += 25 / data->zoom;
-	mlx_draw_func(data, 0, 0);
+	mlx_draw_func(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }
@@ -47,7 +47,7 @@ int	mlx_handlemouse(int keycode, int x, int y, t_data *data)
 		data->zoom *= 1.25;
 	else if (keycode == SCROLLDOWN)
 		data->zoom /= 1.25;
-	mlx_draw_func(data, data->cx, data->cy);
+	mlx_draw_func(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }
