@@ -6,20 +6,20 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/20 15:45:45 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/20 16:59:54 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
 
-int	mlx_draw_func(t_data *data, float cx, float cy)
+int	mlx_draw_func(t_data *data)
 {
 	if (!ft_strncmp(data->fractal, "mandelbrot", 11))
 		ft_fill_screen(data, &ft_mandelbrot, 0, 0);
 	else if (!ft_strncmp(data->fractal, "chou-fleur", 6))
 		ft_fill_screen(data, &ft_choufleur, 0, 0);
 	else
-		ft_fill_screen(data, &ft_julia, cx, cy);
+		ft_fill_screen(data, &ft_julia, data->cx, data->cy);
 	return (0);
 }
 
@@ -41,6 +41,8 @@ void	ft_initdata(t_data *data)
 			&data->line_length, &data->endian);
 	data->offsetx = 0;
 	data->offsety = 0;
+	data->cx = .285;
+	data->cy = .5;
 	data->zoom = 1.05;
 }
 
@@ -59,7 +61,7 @@ int	main(int ac, char **av)
 	ft_initdata(&data);
 	mlx_key_hook(data.win, mlx_handlekb, &data);
 	mlx_mouse_hook(data.win, mlx_handlemouse, &data);
-	mlx_draw_func(&data, 0, 0);
+	mlx_draw_func(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);
 	return (0);

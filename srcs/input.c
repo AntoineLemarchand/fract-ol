@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 11:06:55 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/20 15:54:25 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/20 17:01:28 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,16 @@ int	mlx_handlekb(int keycode, t_data *data)
 
 int	mlx_handlemouse(int keycode, int x, int y, t_data *data)
 {
-	float	cx;
-	float	cy;
-
-	if (keycode == SCROLLUP)
+	if (keycode == 1)
+	{
+		data->cx = 2 * ((float)x - RES_X / 2) / RES_X;
+		data->cy = 2 * ((float)y - RES_Y / 2) / RES_Y;
+	}
+	else if (keycode == SCROLLUP)
 		data->zoom *= 1.25;
 	else if (keycode == SCROLLDOWN)
 		data->zoom /= 1.25;
-	if (keycode == 4 || keycode == 5)
-	{
-		mlx_draw_func(data, 0, 0);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
-	else if (keycode == 1)
-	{
-		cx = 2 * ((float)x - RES_X / 2) / RES_X;
-		cy = 2 * ((float)y - RES_Y / 2) / RES_Y;
-		mlx_draw_func(data, cx, cy);
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
+	mlx_draw_func(data, data->cx, data->cy);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

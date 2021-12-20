@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:47:46 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/20 15:55:19 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/20 17:01:49 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_data {
 	int		offsetx;
 	int		offsety;
 	float	zoom;
+	float	cx;
+	float	cy;
 }	t_data;
 
 typedef struct s_complex {
@@ -50,7 +52,7 @@ typedef struct s_complex {
 	float	imag;
 }	t_complex;
 
-int	mlx_draw_func(t_data *data, float cx, float cy);
+int	mlx_draw_func(t_data *data);
 int	mlx_handlekb(int keycode, t_data *data);
 int	mlx_handlemouse(int keycode, int x, int y, t_data *data);
 int	ft_getcol(int hue);
