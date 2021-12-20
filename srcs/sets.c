@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:43:59 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 21:14:46 by antoine          ###   ########.fr       */
+/*   Updated: 2021/12/20 13:45:21 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,6 @@ int	ft_julia(t_complex z, t_complex c, t_data *data)
 	float	zy2;
 	int		iter;
 
-	/* a retirer plus tard */
-	if (!c.real)
-	{
-		c.real=  .3;
-		c.imag=  .5;
-	}
-	/*                     */
 	z.real = 1.5 * (z.real - RES_X / 2) / (.5 * (data->zoom * RES_X));
 	z.imag = 1.5 * (z.imag - RES_Y / 2) / (.5 * (data->zoom * RES_Y));
 	zx2 = z.real * z.real;

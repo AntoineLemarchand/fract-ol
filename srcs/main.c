@@ -6,20 +6,20 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:54:28 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/17 11:50:27 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/20 15:45:45 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
 
-int	mlx_draw_func(t_data *data)
+int	mlx_draw_func(t_data *data, float cx, float cy)
 {
 	if (!ft_strncmp(data->fractal, "mandelbrot", 11))
-		ft_fill_screen(data, &ft_mandelbrot);
+		ft_fill_screen(data, &ft_mandelbrot, 0, 0);
 	else if (!ft_strncmp(data->fractal, "chou-fleur", 6))
-		ft_fill_screen(data, &ft_choufleur);
+		ft_fill_screen(data, &ft_choufleur, 0, 0);
 	else
-		ft_fill_screen(data, &ft_julia);
+		ft_fill_screen(data, &ft_julia, cx, cy);
 	return (0);
 }
 
@@ -30,6 +30,18 @@ int	ft_isparam(char *s)
 		|| !ft_strncmp(s, "chou-fleur", 11))
 		return (1);
 	return (0);
+}
+
+void	ft_initdata(t_data *data)
+{
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, RES_X, RES_Y, data->fractal);
+	data->img = mlx_new_image(data->mlx, RES_X, RES_Y);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+			&data->line_length, &data->endian);
+	data->offsetx = 0;
+	data->offsety = 0;
+	data->zoom = 1.05;
 }
 
 int	main(int ac, char **av)
@@ -44,17 +56,10 @@ int	main(int ac, char **av)
 		return (22);
 	}
 	data.fractal = av[1];
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, RES_X, RES_Y, av[1]);
-	data.img = mlx_new_image(data.mlx, RES_X, RES_Y);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
-			&data.line_length, &data.endian);
+	ft_initdata(&data);
 	mlx_key_hook(data.win, mlx_handlekb, &data);
 	mlx_mouse_hook(data.win, mlx_handlemouse, &data);
-	data.offsetx = 0;
-	data.offsety = 0;
-	data.zoom = 1.05;
-	mlx_draw_func(&data);
+	mlx_draw_func(&data, 0, 0);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);
 	return (0);
