@@ -11,6 +11,6 @@ Right now, the project should contain :
 simply use :
 ```
 make
-./fractol -<mandelbrot|julia|burningship>
+./fractol -<mandelbrot|julia|chou-fleur>
 ```
 zoom with the scroll wheel, quit with esc and change julia parameters with the mouse
