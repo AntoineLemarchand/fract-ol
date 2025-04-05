@@ -1,4 +1,13 @@
 # Fract-ol
+<hr>
+<div style="
+  display: flex;
+  border: solid;">
+  <img width=300 src="/imgs/mandelbrot.png"/>
+  <img width=300 src="/imgs/julia.png"/>
+  <img width=300 src="/imgs/colliflower.png"/>
+</div>
+<hr>
 This project was an introduction to graphical programming in c. It was also an opening to the world of math in a programming environment.
 This program was coded with the school 42 homemade graphical library: the minilibx.
 
